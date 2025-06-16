@@ -8,19 +8,15 @@ import userRoute from './routes/user.route.js'
 import postRoute from './routes/post.route.js'
 import messageRoute from './routes/message.route.js'
 import { app, server } from './socket/socket.js';
-// import path from "path"
+import { fileURLToPath } from 'url';
+import path from "path"
 
-app.get("/",(req,res)=>{
-    return res.status(200).json({
-        message:"I am Coming from Backend",
-        success:true
-    })
-})
 
 const port = process.env.PORT || 8000;
 
-// const __dirname = path.resolve()
-// console.log(__dirname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log(__dirname);
 
 
 //Middleware
@@ -28,7 +24,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(urlencoded({extended:true}))
 const corsOptions={
-    origin: ['http://localhost:5173','https://instaclone002.netlify.app','https://instagram-zeta-ruddy.vercel.app'],
+    origin: ['http://localhost:5173','https://instagram-zeta-ruddy.vercel.app'],
     credentials:true
 }
 app.use(cors(corsOptions))
@@ -38,10 +34,21 @@ app.use("/api/v1/user",userRoute)
 app.use("/api/v1/post",postRoute)
 app.use("/api/v1/message",messageRoute)
 
-// app.use(express.static(path.join(__dirname,"/frontend/dist")))
-// app.get("*",(_,res)=>{
-//     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  });
+}
+
+
+// app.get("/",(req,res)=>{
+//     return res.status(200).json({
+//         message:"I am Coming from Backend",
+//         success:true
+//     })
 // })
+
 
 server.listen(port,()=>{
     connectDB();
