@@ -8,7 +8,7 @@ import userRoute from './routes/user.route.js'
 import postRoute from './routes/post.route.js'
 import messageRoute from './routes/message.route.js'
 import { app, server } from './socket/socket.js';
-// import path from "path"
+import path from "path"
 
 app.get("/",(req,res)=>{
     return res.status(200).json({
@@ -16,10 +16,11 @@ app.get("/",(req,res)=>{
         success:true
     })
 })
-const port = process.env.port || 8000;
 
-// const __dirname = path.resolve()
-// console.log(__dirname);
+const port = process.env.PORT || 8000;
+
+const __dirname = path.resolve()
+console.log(__dirname);
 
 
 //Middleware
@@ -37,10 +38,10 @@ app.use("/api/v1/user",userRoute)
 app.use("/api/v1/post",postRoute)
 app.use("/api/v1/message",messageRoute)
 
-// app.use(express.static(path.join(__dirname,"/frontend/dist")))
-// app.get("*",(req,res)=>{
-//     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
-// })
+app.use(express.static(path.join(__dirname,"/frontend/dist")))
+app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+})
 
 server.listen(port,()=>{
     connectDB();
