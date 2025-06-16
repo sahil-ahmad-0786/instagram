@@ -28,7 +28,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(urlencoded({extended:true}))
 const corsOptions={
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','https://instaclone006.netlify.app'],
     credentials:true
 }
 app.use(cors(corsOptions))
