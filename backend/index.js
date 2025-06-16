@@ -8,15 +8,15 @@ import userRoute from './routes/user.route.js'
 import postRoute from './routes/post.route.js'
 import messageRoute from './routes/message.route.js'
 import { app, server } from './socket/socket.js';
-import { fileURLToPath } from 'url';
-import path from "path"
+// import { fileURLToPath } from 'url';
+// import path from "path"
 
 
 const port = process.env.PORT || 8000;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-console.log(__dirname);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// console.log(__dirname);
 
 
 //Middleware
@@ -34,12 +34,12 @@ app.use("/api/v1/user",userRoute)
 app.use("/api/v1/post",postRoute)
 app.use("/api/v1/message",messageRoute)
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+//   });
+// }
 
 
 // app.get("/",(req,res)=>{
