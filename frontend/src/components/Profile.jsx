@@ -43,7 +43,9 @@ const Profile = () => {
   const messagePage = () =>{
     navigate('/chat')
   }
-
+  if (!user || !userProfile) {
+  return <div className="p-4 text-center text-gray-500">Loading profile...</div>;
+}
   return (
     <div className="flex max-w-5xl justify-center mx-auto pl-10">
       <div className="flex flex-col gap-20 p-8">
