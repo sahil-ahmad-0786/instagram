@@ -54,7 +54,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     if(user){
-      const socketio = io('https://instagram-5-u9yd.onrender.com/',{
+      const socketio = io('https://instagram-5-u9yd.onrender.com',{
         query:{
           userId: user._id
         },
