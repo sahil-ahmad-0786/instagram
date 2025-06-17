@@ -7,7 +7,7 @@ export const toggleFollowUser = createAsyncThunk(
   async (targetUserId, { getState, rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/followorunfollow/${targetUserId}`,
+        `https://instagram-20.vercel.app/api/v1/user/followorunfollow/${targetUserId}`,
         {},
         { withCredentials: true }
       );

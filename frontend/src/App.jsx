@@ -54,7 +54,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     if(user){
-      const socketio = io('http://localhost:8000',{
+      const socketio = io('https://instagram-20.vercel.app',{
         query:{
           userId: user._id
         },
