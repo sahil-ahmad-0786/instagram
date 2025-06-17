@@ -24,7 +24,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(urlencoded({extended:true}))
 const corsOptions={
-    origin: ['http://localhost:5173','https://instaclone78.netlify.app'],
+    origin: ['http://localhost:5173','https://insta785.netlify.app'],
     credentials:true
 }
 app.use(cors(corsOptions))
@@ -33,6 +33,11 @@ app.use(cors(corsOptions))
 app.use("/api/v1/user",userRoute)
 app.use("/api/v1/post",postRoute)
 app.use("/api/v1/message",messageRoute)
+
+// app.use((req, res, next) => {
+//   console.log("Origin:", req.headers.origin);
+//   next();
+// });
 
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
 // app.get("*", (req,res)=>{
