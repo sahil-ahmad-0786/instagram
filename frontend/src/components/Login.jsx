@@ -26,7 +26,7 @@ const Login = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('https://instagram-20.vercel.app/api/v1/user/login', input, {
+            const res = await axios.post('https://instagram-5-u9yd.onrender.com//api/v1/user/login', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },

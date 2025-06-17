@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://instagram-20.vercel.app/api/v1/user/register",
+        "https://instagram-5-u9yd.onrender.com//api/v1/user/register",
         input,
         {
           headers: {
