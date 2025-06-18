@@ -9,7 +9,7 @@ const useGetUserProfile = (userId) => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await axios.get(`https://instagram-5-u9yd.onrender.com`+`/api/v1/user/${userId}/profile`, {
+        const res = await axios.get(`https://instagram-5-u9yd.onrender.com`+`/api/v1/user/profile/${userId}`, {
           withCredentials: true,
         });
 
