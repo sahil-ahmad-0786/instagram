@@ -14,6 +14,7 @@ const useGetUserProfile = (userId) => {
         });
 
         if (res.data.success) {
+          console.log(res.data.success);
           dispatch(setUserProfile(res.data.user));
         } else {
           dispatch(setUserProfile(null)); // set to null explicitly on fail

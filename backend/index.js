@@ -1,9 +1,9 @@
+dotenv.config({});
+import dotenv from "dotenv"
 import express, { urlencoded } from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import dotenv from "dotenv"
 import connectDB from './utils/db.js';
-dotenv.config({});
 import userRoute from './routes/user.route.js'
 import postRoute from './routes/post.route.js'
 import messageRoute from './routes/message.route.js'
