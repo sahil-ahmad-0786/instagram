@@ -1,16 +1,10 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import LeftSidebar from './LeftSidebar';
+import './layout.css'; // 👈 import your CSS
 
 const MainLayout = () => {
   return (
     <>
-      <LeftSidebar />
-      <div className="ml-64 p-4">
-        <Outlet />
-      </div>
+      <div className="sidebar"> <LeftSidebar /> </div>
+      <div className="main-content"> <Outlet /> </div>
     </>
   );
 };
-
-export default MainLayout;
