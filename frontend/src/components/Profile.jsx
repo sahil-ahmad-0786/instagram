@@ -14,15 +14,15 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
   const { userProfile, user } = useSelector((store) => store.auth);
-
-  const isLoggedInUserProfile = user?._id === userProfile?._id; 
-  if (userProfile === null) {
+ if (!userProfile || !user) {
     return (
       <div className="flex justify-center items-center h-96">
         <span>Loading profile...</span>
       </div>
     );
   }
+  const isLoggedInUserProfile = user?._id === userProfile?._id; 
+ 
   const isFollowing = userProfile?.followers?.includes(user?._id);
 
  
