@@ -83,11 +83,13 @@ export const login = async (req, res) => {
       following: user.following,
       posts: populatedPosts,
     };
+    const isProduction = process.env.production === "production";
+
     return res
       .cookie("token", token, {
         httpOnly: true,
         sameSite: "None",
-        secure: true,
+        secure: isProduction,
         maxAge: 1 * 24 * 60 * 60 * 1000,
       })
       .json({
