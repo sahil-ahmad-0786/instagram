@@ -79,7 +79,7 @@ const LeftSidebar = () => {
     { icon: <LogOut />, text: "Logout" },
   ];
   return (
-    <div className="hidden sm:flex fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[200px] h-screen">
+    <div className="fixed top-0 left-0 px-4 border-r border-gray-300 w-64 h-screen bg-white">
       <div className="flex flex-col w-full">
         <h1 className="my-8 pl-3 font-bold text-xl">LOGO</h1>
         <div>
