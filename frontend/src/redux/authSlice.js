@@ -11,13 +11,13 @@ const authSlice = createSlice({
   reducers: {
     // actions
     setAuthUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload ?? null;
     },
     setSuggestedUsers: (state, action) => {
       state.suggestedUsers = action.payload;
     },
     setUserProfile: (state, action) => {
-      state.userProfile = action.payload;
+      state.userProfile = action.payload ?? null;
     },
     setSelectedUser: (state, action) => {
       state.selectedUser = action.payload;
