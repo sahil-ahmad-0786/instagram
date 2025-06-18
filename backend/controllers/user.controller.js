@@ -83,19 +83,16 @@ export const login = async (req, res) => {
       following: user.following,
       posts: populatedPosts,
     };
-    const isProduction = process.env.production === "production";
-
     return res
       .cookie("token", token, {
         httpOnly: true,
         sameSite: "None",
-        secure: isProduction,
+        secure: true,
         maxAge: 1 * 24 * 60 * 60 * 1000,
       })
       .json({
         message: `Welcome back ${user.username}`,
         success: true,
-        token,
         user,
       });
   } catch (error) {
