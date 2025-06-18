@@ -11,7 +11,7 @@ const Profile = () => {
   const params = useParams();
   const userId = params.id;
   useGetUserProfile(userId);
-  const [activeTab, setActiveTab] = useState("posts");
+  // const [activeTab, setActiveTab] = useState("posts");
 
   const { userProfile, user } = useSelector((store) => store.auth);
 
@@ -29,15 +29,15 @@ const Profile = () => {
     ? userProfile.followers.includes(user?._id)
     : false;
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+  // const handleTabChange = (tab) => {
+  //   setActiveTab(tab);
+  // };
 
   // Always default to empty arrays to avoid errors
-  const displayedPost =
-    activeTab === "posts"
-      ? userProfile?.posts ?? []
-      : userProfile?.bookmarks ?? [];
+  // const displayedPost =
+  //   activeTab === "posts"
+  //     ? userProfile?.posts ?? []
+  //     : userProfile?.bookmarks ?? [];
 
   return (
     <div className="flex max-w-5xl justify-center mx-auto pl-10">
@@ -129,7 +129,7 @@ const Profile = () => {
             </div>
           </section>
         </div>
-        <div className="border-t border-t-gray-200">
+        {/* <div className="border-t border-t-gray-200">
           <div className="flex items-center justify-center gap-10 text-sm">
             <span
               className={`py-3 cursor-pointer ${
@@ -173,7 +173,7 @@ const Profile = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
