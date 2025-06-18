@@ -24,7 +24,7 @@ const browserRouter = createBrowserRouter([
         element: <ProtectedRoutes><Home /></ProtectedRoutes>,
       },
       {
-        path: "/:id/profile",
+        path: "/profile/:id",
         element: <ProtectedRoutes> <Profile /></ProtectedRoutes>,
       },
       {
