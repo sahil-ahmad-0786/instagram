@@ -14,7 +14,7 @@ const SuggestedUsers = () => {
 
   const handleFollow = async (targetUserId, isFollowing) => {
     setLoadingUserId(targetUserId); // 👈 start loading for this user
-    const res = await dispatch(toggleFollowUser(targetUserId));
+    const res = dispatch(toggleFollowUser(targetUserId));
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(
         updateSuggestedUsers({
