@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors:{
-        origin:'https://insta785.netlify.app/',
+        origin:'https://insta785.netlify.app',
         methods:['GET','POST']
     }
 })
