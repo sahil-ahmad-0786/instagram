@@ -53,7 +53,11 @@ const LeftSidebar = () => {
     } else if (textType === "Create") {
       setOpen(true);
     } else if (textType === "Profile") {
-      navigate(`/profile/${user?._id}`);
+      if (user?._id) {
+        navigate(`/profile/${user._id}`);
+      } else {
+        toast.error("User not logged in");
+      }
     } else if (textType === "Home") {
       navigate("/");
     } else if (textType === "Messages") {
