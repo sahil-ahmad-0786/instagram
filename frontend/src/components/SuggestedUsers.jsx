@@ -37,8 +37,11 @@ const SuggestedUsers = () => {
         const isFollowing = userItem.followers.includes(user._id);
 
         return (
-          <div key={userItem._id} className="flex items-center justify-between my-5">
-            <div className="flex items-center gap-2">
+          <div
+            key={userItem._id}
+            className="flex items-center justify-between my-5 flex-wrap sm:flex-nowrap gap-y-2"
+          >
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               <Link to={`/profile/${userItem._id}`}>
                 <Avatar>
                   <AvatarImage src={userItem.profilePicture} />
@@ -47,24 +50,29 @@ const SuggestedUsers = () => {
               </Link>
               <div>
                 <h1 className="font-semibold text-sm">
-                  <Link to={`/profile/${userItem._id}`}>{userItem.username}</Link>
+                  <Link to={`/profile/${userItem._id}`}>
+                    {userItem.username}
+                  </Link>
                 </h1>
-                <span className="text-gray-600 text-sm">{userItem.bio || "Bio here..."}</span>
+                <span className="text-gray-600 text-sm">
+                  {userItem.bio || "Bio here..."}
+                </span>
               </div>
             </div>
-
-            <span
-              onClick={() => handleFollow(userItem._id, isFollowing)}
-              className={`text-xs font-bold cursor-pointer hover:opacity-80 ${
-                isFollowing ? "text-red-500" : "text-[#3BADF8]"
-              }`}
-            >
-              {loadingUserId === userItem._id
-                ? "Processing..."
-                : isFollowing
-                ? "Unfollow"
-                : "Follow"}
-            </span>
+            <div className="w-full sm:w-auto text-right">
+              <span
+                onClick={() => handleFollow(userItem._id, isFollowing)}
+                className={`text-xs font-bold cursor-pointer hover:opacity-80 ${
+                  isFollowing ? "text-red-500" : "text-[#3BADF8]"
+                }`}
+              >
+                {loadingUserId === userItem._id
+                  ? "Processing..."
+                  : isFollowing
+                  ? "Unfollow"
+                  : "Follow"}
+              </span>
+            </div>
           </div>
         );
       })}

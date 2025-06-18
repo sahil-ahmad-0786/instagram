@@ -29,9 +29,12 @@ const LeftSidebar = () => {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     try {
-      const res = await axios.get("https://instagram-5-u9yd.onrender.com"+"/api/v1/user/logout", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://instagram-5-u9yd.onrender.com" + "/api/v1/user/logout",
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res);
       if (res.data.success) {
         dispatch(setAuthUser(null));
@@ -76,8 +79,8 @@ const LeftSidebar = () => {
     { icon: <LogOut />, text: "Logout" },
   ];
   return (
-    <div className="fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[16%] h-sxreen">
-      <div className="flex flex-col">
+    <div className="hidden sm:flex fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[200px] h-screen">
+      <div className="flex flex-col w-full">
         <h1 className="my-8 pl-3 font-bold text-xl">LOGO</h1>
         <div>
           {sidebarItems.map((item, index) => {
@@ -88,7 +91,7 @@ const LeftSidebar = () => {
                 className="flex items-center gap-3 relative hover:bg-gray-200 cursor-pointer rounded-lg p-3 my-3"
               >
                 {item.icon}
-                <span>{item.text}</span>
+                <span className="hidden md:inline">{item.text}</span>
                 {item.text === "Notifications" &&
                   likeNotification.length > 0 && (
                     <Popover>

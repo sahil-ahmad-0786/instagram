@@ -121,9 +121,9 @@ const Post = ({ post }) => {
     }
   };
   return (
-    <div className="my-8 w-full max-w-sm mx-auto">
+    <div className="w-full max-w-full px-2 sm:px-0 sm:max-w-md mx-auto my-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap text-sm">
           <Avatar className="w-6 h-6">
             <AvatarImage src={post.author.profilePicture} alt="@shadcn" />
             <AvatarFallback>😎</AvatarFallback>
