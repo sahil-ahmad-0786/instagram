@@ -14,24 +14,30 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
   const { userProfile, user } = useSelector((store) => store.auth);
- if (!userProfile || !user) {
+
+  // Loading state: don't render anything until both user and userProfile are loaded
+  if (!userProfile || !user) {
     return (
       <div className="flex justify-center items-center h-96">
         <span>Loading profile...</span>
       </div>
     );
   }
-  const isLoggedInUserProfile = user?._id === userProfile?._id; 
- 
-  const isFollowing = userProfile?.followers?.includes(user?._id);
 
- 
+  const isLoggedInUserProfile = user?._id === userProfile?._id;
+  const isFollowing = Array.isArray(userProfile?.followers)
+    ? userProfile.followers.includes(user?._id)
+    : false;
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  // Always default to empty arrays to avoid errors
   const displayedPost =
-    activeTab === "posts" ? userProfile?.posts : userProfile?.bookmarks;
+    activeTab === "posts"
+      ? userProfile?.posts ?? []
+      : userProfile?.bookmarks ?? [];
 
   return (
     <div className="flex max-w-5xl justify-center mx-auto pl-10">
@@ -91,19 +97,19 @@ const Profile = () => {
               <div className="flex items-center gap-4">
                 <p>
                   <span className="font-semibold">
-                    {userProfile?.posts.length}{" "}
+                    {userProfile?.posts?.length ?? 0}{" "}
                   </span>
                   posts
                 </p>
                 <p>
                   <span className="font-semibold">
-                    {userProfile?.followers.length}{" "}
+                    {userProfile?.followers?.length ?? 0}{" "}
                   </span>
                   followers
                 </p>
                 <p>
                   <span className="font-semibold">
-                    {userProfile?.following.length}{" "}
+                    {userProfile?.following?.length ?? 0}{" "}
                   </span>
                   following
                 </p>
@@ -145,34 +151,31 @@ const Profile = () => {
             <span className="py-3 cursor-pointer">TAGS</span>
           </div>
           <div className="grid grid-cols-3 gap-1">
-            {displayedPost?.map((post) => {
-              return (
-                <div key={post?._id} className="relative group cursor-pointer">
-                  <img
-                    src={post.image}
-                    alt="postimage"
-                    className="rounded-sm my-2 w-full aspect-square object-cover"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex items-center text-white space-x-4">
-                      <button className="flex items-center gap-2 hover:text-gray-300">
-                        <Heart />
-                        <span>{post?.likes.length}</span>
-                      </button>
-                      <button className="flex items-center gap-2 hover:text-gray-300">
-                        <MessageCircle />
-                        <span>{post?.comments.length}</span>
-                      </button>
-                    </div>
+            {(displayedPost ?? []).map((post) => (
+              <div key={post?._id} className="relative group cursor-pointer">
+                <img
+                  src={post?.image}
+                  alt="postimage"
+                  className="rounded-sm my-2 w-full aspect-square object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex items-center text-white space-x-4">
+                    <button className="flex items-center gap-2 hover:text-gray-300">
+                      <Heart />
+                      <span>{post?.likes?.length ?? 0}</span>
+                    </button>
+                    <button className="flex items-center gap-2 hover:text-gray-300">
+                      <MessageCircle />
+                      <span>{post?.comments?.length ?? 0}</span>
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Profile;
