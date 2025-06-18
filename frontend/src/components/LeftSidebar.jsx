@@ -53,6 +53,8 @@ const LeftSidebar = () => {
     } else if (textType === "Create") {
       setOpen(true);
     } else if (textType === "Profile") {
+      console.log(user._id);
+      
       if (user?._id) {
         navigate(`/profile/${user._id}`);
       } else {
